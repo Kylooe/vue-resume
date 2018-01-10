@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="container">
     <img class="avatar" :src="$store.state.data.avatar">
     <h1 class="title">{{ $store.state.data.name }}</h1>
     <p class="slogan">{{ $store.state.data.slogan }}</p>
@@ -23,13 +23,6 @@
 </script>
 
 <style scoped>
-  .profile {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   p {
     color: #fff;
     font-size: 1.2em;

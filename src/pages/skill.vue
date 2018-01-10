@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="title">技能</h2>
     <div class="content">
       <div class="skill"
@@ -76,6 +76,12 @@
     border-radius: 2px;
   }
 @media (max-width: 430px) {
-
+  .skill {
+    padding: 10px 0;
+    line-height: 30px;
+  }
+  .level {
+    height: 30px;
+  }
 }
 </style>

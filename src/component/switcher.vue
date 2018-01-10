@@ -47,4 +47,9 @@ export default {
 .single:after {
   left: 20px;
 }
+@media screen and (max-width: 1024px) {
+  .switcher {
+    display: none;
+  }
+}
 </style>

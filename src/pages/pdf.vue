@@ -72,9 +72,9 @@ a {
 }
 .wrapper {
   position: relative;
-  width: 1240px;
   margin: 0 auto;
-  background: #c1e4e9;
+  max-width: 1240px;
+  background-color: #c1e4e9;
   box-shadow: 2px 5px 5px rgba(0,0,0,.2);
 }
 .sidebar {

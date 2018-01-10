@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="title">项目</h2>
     <div class="content">
       <div class="wrapper">

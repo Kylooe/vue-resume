@@ -97,6 +97,15 @@ body {
   opacity: 0;
   transform: translateY(100%);
   transition: transform .5s ease-out, background .3s ease-in;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-height: 100%;
 }
 
 .current, .pre, .next {
@@ -104,16 +113,16 @@ body {
 }
 
 .current {
-  transform: translate3d(0,0,0);
+  transform: translateY(0);
 }
 
 .pre {
-  transform: translate3d(0, -100%, 0);
+  transform: translateY(-100%);
   background: rgba(0,0,0,.3);
 }
 
 .next {
-  transform: translate3d(0,100%,0);
+  transform: translateY(100%);
   background: rgba(0,0,0,.3);
 }
 
