@@ -116,6 +116,7 @@ body {
   opacity: 0;
   transform: translateY(100%);
   transition: transform .5s ease-out, background .3s ease-in;
+  overflow: hidden;
 }
 
 .current, .pre, .next {
@@ -136,13 +137,20 @@ body {
   background: rgba(0,0,0,.3);
 }
 
+.container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
 .title {
   font-size: 3rem;
   color: #fff;
   text-shadow: 1px 2px #38a1db;
 }
 
-.content {
+/*.content {
   position: relative;
   height: calc(100% - 3rem);
   overflow: hidden;
@@ -154,7 +162,7 @@ body {
   transform: translateY(-50%);
   width: 100%;
   max-height: 100%;
-}
+}*/
 
 a {
   text-decoration: none;

@@ -1,19 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="title">技能</h2>
     <div class="content">
-      <div class="wrapper">
-        <div class="skill"
-          v-for="skill in $store.state.data.skill"
-        >
-          <p class="name">{{ skill.name }}</p>
-          <div class="level"
-            :style="[{ width: skill.level*weight + 'px' }, skillStyle]">
-          </div>
+      <div class="skill"
+        v-for="skill in $store.state.data.skill"
+      >
+        <p class="name">{{ skill.name }}</p>
+        <div class="level"
+          :style="[{ width: skill.level*weight + 'px' }, skillStyle]">
         </div>
-        <div class="other">
-          
-        </div>
+      </div>
+      <div class="other">
+        
       </div>
     </div>
   </div>
