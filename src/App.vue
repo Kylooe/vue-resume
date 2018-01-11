@@ -5,6 +5,8 @@
       v-show="isFullPage"
       @mousewheel="fullscroll"
       @DOMMouseScroll="fullscroll"
+      @touchmove.prevent="touchmove"
+      @touchend.prevent="touchend"
     >
       <navigator :id="current" @to="to" />
       <div class="page"
@@ -38,7 +40,9 @@ export default {
   data: () => ({
     pages: [ 'profile', 'skill', 'project', 'education' ],
     current: 0,
-    isFullPage: true
+    isFullPage: true,
+    lock: false,
+    touchY: 0
   }),
   methods: {
     to (id) {
@@ -57,6 +61,21 @@ export default {
         if (this.current === 0) return
         else this.current--
       } else if (wheelDelta < 0) {
+        if (this.current === this.pages.length - 1) return
+        else this.current++
+      }
+      this.lock = true
+      setTimeout(() => { this.lock = false }, 1000)
+    },
+    touchmove (e) {
+      this.touchY = e.changedTouches[0].screenY
+    },
+    touchend (e) {
+      if (this.touchY === 0 || this.lock) return
+      if (this.touchY - e.changedTouches[0].screenY > 50) {
+        if (this.current === 0) return
+        else this.current--
+      } else if (this.touchY - e.changedTouches[0].screenY < -50) {
         if (this.current === this.pages.length - 1) return
         else this.current++
       }
@@ -97,15 +116,6 @@ body {
   opacity: 0;
   transform: translateY(100%);
   transition: transform .5s ease-out, background .3s ease-in;
-  overflow: hidden;
-}
-
-.container {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  max-height: 100%;
 }
 
 .current, .pre, .next {
@@ -127,13 +137,23 @@ body {
 }
 
 .title {
-  font-size: 3em;
+  font-size: 3rem;
   color: #fff;
   text-shadow: 1px 2px #38a1db;
 }
 
 .content {
-  padding: 20px;
+  position: relative;
+  height: calc(100% - 3rem);
+  overflow: hidden;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-height: 100%;
 }
 
 a {

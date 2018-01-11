@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wrapper">
     <img class="avatar" :src="$store.state.data.avatar">
     <h1 class="title">{{ $store.state.data.name }}</h1>
     <p class="slogan">{{ $store.state.data.slogan }}</p>

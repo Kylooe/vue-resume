@@ -1,17 +1,19 @@
 <template>
-  <div class="container">
+  <div>
     <h2 class="title">技能</h2>
     <div class="content">
-      <div class="skill"
-        v-for="skill in $store.state.data.skill"
-      >
-        <p class="name">{{ skill.name }}</p>
-        <div class="level" :style="{ width: skill.level*30 + 'px' }"></div>
-      </div>
-      <div class="other">
-        <p>更多……</p>
-        <div class="panel"><span class="tag">Bootstrap</span><span class="tag">SCSS</span><span class="tag">Less</span><span class="tag">jQuery</span></div>
-        <div class="panel"><span class="tag">Three.js</span><span class="tag">Python</span><span class="tag">C</span></div>
+      <div class="wrapper">
+        <div class="skill"
+          v-for="skill in $store.state.data.skill"
+        >
+          <p class="name">{{ skill.name }}</p>
+          <div class="level"
+            :style="[{ width: skill.level*weight + 'px' }, skillStyle]">
+          </div>
+        </div>
+        <div class="other">
+          
+        </div>
       </div>
     </div>
   </div>
@@ -21,6 +23,11 @@
   export default {
     name: 'skill',
     data: () => ({
+      weight: 30,
+      skillStyle: {
+        background: `linear-gradient(90deg, #fff ${this.weight / 3 * 2}px, transparent ${this.weight / 3}px)`,
+        backgroundSize: `${this.weight}px 100%`
+      }
     })
   }
 </script>
@@ -31,10 +38,11 @@
     width: 400px;
     padding: 20px 40px;
     text-align: left;
+    transition: all .2s;
   }
   .skill:hover {
-    background: rgba(0,0,0,.3);
-    border-radius: 10px;
+    background: rgba(0,0,0,.2);
+    border-radius: 5px;
   }
   .name {
     display: inline-block;
@@ -52,8 +60,8 @@
     height: 50px;
     margin-left: 15px;
     background-color: #4e959f;
-    background: linear-gradient(90deg, #fff 20px, transparent 10px);
-    background-size: 30px 100%;
+    /*background: linear-gradient(90deg, #fff 20px, transparent 10px);*/
+    /*background-size: 30px 100%;*/
     background-repeat: repeat;
     vertical-align: middle;
   }
@@ -75,6 +83,7 @@
     background: #fff;
     border-radius: 2px;
   }
+
 @media (max-width: 430px) {
   .skill {
     padding: 10px 0;
