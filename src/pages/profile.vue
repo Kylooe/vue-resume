@@ -29,6 +29,7 @@
   }
 
   .avatar {
+    margin-bottom: 20px;
     width: 150px;
     height: 150px;
     border: 5px solid #eee;

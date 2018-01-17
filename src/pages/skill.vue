@@ -2,12 +2,14 @@
   <div class="container">
     <h2 class="title">技能</h2>
     <div class="content">
-      <div class="skill"
-        v-for="skill in $store.state.data.skill"
-      >
-        <p class="name">{{ skill.name }}</p>
-        <div class="level"
-          :style="[{ width: skill.level*weight + 'px' }, skillStyle]">
+      <div class="skills">
+        <div class="skill"
+          v-for="skill in $store.state.data.skill"
+        >
+          <p class="name">{{ skill.name }}</p>
+          <div class="level"
+            :style="[{ width: skill.level*weight + 'px' }, skillStyle]">
+          </div>
         </div>
       </div>
       <div class="other">
@@ -21,16 +23,29 @@
   export default {
     name: 'skill',
     data: () => ({
-      weight: 30,
-      skillStyle: {
-        background: `linear-gradient(90deg, #fff ${this.weight / 3 * 2}px, transparent ${this.weight / 3}px)`,
-        backgroundSize: `${this.weight}px 100%`
+      weight: 30
+    }),
+    beforeMount () {
+      if (window.innerWidth <= 430) this.weight = 15
+    },
+    computed: {
+      skillStyle: function () {
+        return {
+          background: `linear-gradient(90deg, #fff ${this.weight / 3 * 2}px, transparent ${this.weight / 3}px)`,
+          backgroundSize: `${this.weight}px 100%`
+        }
       }
-    })
+    }
   }
 </script>
 
 <style scoped>
+  .skills {
+    margin: auto;
+    max-width: 100%;
+    width: 960px;
+    text-align: left;
+  }
   .skill {
     display: inline-block;
     width: 400px;
@@ -83,8 +98,7 @@
   }
 
 @media (max-width: 430px) {
-  .skill {
-    padding: 10px 0;
+  .name {
     line-height: 30px;
   }
   .level {

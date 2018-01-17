@@ -1,5 +1,8 @@
 <template>
   <div id="resume">
+    <div v-show="isLandscape">
+      <p>手机横屏显示效果很炸啦，还是竖屏看吧(`·ω·´)</p>
+    </div>
     <switcher @change="change" />
     <div class="fullpage"
       v-show="isFullPage"
@@ -41,9 +44,13 @@ export default {
     pages: [ 'profile', 'skill', 'project', 'education' ],
     current: 0,
     isFullPage: true,
+    isLandscape: false,
     lock: false,
     touchY: 0
   }),
+  mounted () {
+
+  },
   methods: {
     to (id) {
       this.current = id
@@ -145,6 +152,7 @@ body {
 }
 
 .title {
+  margin-top: 0;
   font-size: 3rem;
   color: #fff;
   text-shadow: 1px 2px #38a1db;

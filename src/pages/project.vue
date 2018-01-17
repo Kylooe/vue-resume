@@ -7,18 +7,18 @@
           :style="{ left: offset + 'px' }"
         >
           <li class="project"
-            v-for="item in $store.state.data.projects"
+            v-for="item in projects"
           >
-            <p>{{ item.name }}</p>
+            <p class="name">{{ item.name }}</p>
             <img :src="item.img" alt="图显示不出来">
             <p class="description">{{ item.description }}</p>
-            <a :href="item.code" v-if="item.code">源码</a>
-            <a :href="item.demo" v-if="item.demo">DEMO</a>
+            <a :href="item.code" target="_blank" v-if="item.code">源码</a>
+            <a :href="item.demo" target="_blank" v-if="item.demo">DEMO</a>
           </li>
         </ul>
       </div>
-      <div class="left" @click="pre">&lt;</div>
-      <div class="right" @click="next">&gt;</div>
+      <div class="left disable" @click="arrow" @touchstart="arrow">&lt;</div>
+      <div class="right" @click="arrow" @touchstart="arrow">&gt;</div>
     </div>
   </div>
 </template>
@@ -28,19 +28,32 @@
     name: 'project',
     data: () => ({
       offset: 0,
-      length: 0
+      rowNum: 3,
+      cardWidth: 350,
+      projects: []
     }),
     beforeMount () {
-      this.length = this.$store.state.data.projects.length
+      this.projects = this.$store.state.data.projects.filter((project) => project.show === true)
+      if (window.innerWidth <= 430) this.rowNum = 1
+    },
+    updated () {
+      this.offset === 0 && document.querySelector('.left').classList.add('disable')
+      this.offset === ((this.projects.length - this.rowNum) * -this.cardWidth) && document.querySelector('.right').classList.add('disable')
     },
     methods: {
-      pre () {
-        if (this.offset === 0) return
-        else this.offset += 350
-      },
-      next () {
-        if (this.offset === (this.length - 3) * -350) return
-        else this.offset -= 350
+      arrow (e) {
+        const classList = e.target.classList
+        const leftward = classList.contains('left')
+        const threshold = leftward ? 0 : (this.projects.length - this.rowNum) * -this.cardWidth
+        if (this.offset !== threshold) {
+          if (leftward) {
+            this.offset += this.cardWidth
+            document.querySelector('.right').classList.remove('disable')
+          } else {
+            this.offset -= this.cardWidth
+            document.querySelector('.left').classList.remove('disable')
+          }
+        }
       }
     }
   }
@@ -49,8 +62,9 @@
 <style scoped>
 .content {
   position: relative;
-  width: 1100px;
+  width: 1150px;
   margin: 0 auto;
+  overflow: hidden;
 }
 .wrapper {
   width: 1050px;
@@ -76,6 +90,9 @@
 .project p {
   margin: 10px 20px;
 }
+.name {
+  font-size: 20px;
+}
 img {
   width: 270px;
   max-height: 155px;
@@ -83,7 +100,7 @@ img {
   border: 1px solid #c1e4e9;
 }
 .description {
-  height: 165px;
+  height: 150px;
   text-align: left;
   white-space: pre-line;
 }
@@ -105,7 +122,7 @@ a:hover {
   background-color: transparent;
   color: #fff;
   font-weight: bolder;
-  font-size: 3em;
+  font-size: 50px;
   cursor: pointer;
   transition: all .2s ease;
 }
@@ -117,5 +134,15 @@ a:hover {
 }
 .right {
   right: 0;
+}
+.disable {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 430px) {
+  .content {
+    width: 350px;
+    height: 550px;
+  }
 }
 </style>
