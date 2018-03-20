@@ -1,6 +1,6 @@
 <template>
   <div id="resume">
-    <div v-show="isLandscape">
+    <div id="landscape">
       <p>手机横屏显示效果很炸啦，还是竖屏看吧(`·ω·´)</p>
     </div>
     <switcher @change="change" />
@@ -89,6 +89,7 @@ export default {
       }
       this.lock = true
       setTimeout(() => { this.lock = false }, 800)
+      this.touchY = 0
     }
   },
   components: { switcher, navigator, profile, skill, project, education, pdf }
@@ -104,6 +105,18 @@ body {
   background-color: #eee;
   color: #4e959f;
   font-family: "Microsoft JhengHei", Helvetica, Arial, sans-serif;
+}
+#landscape {
+  position: fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  z-index: 99;
 }
 .fullpage {
   position: absolute;
@@ -176,5 +189,10 @@ body {
 a {
   text-decoration: none;
   color: #4e959f;
+}
+@media screen and (orientation: landscape) {
+  #landscape {
+    display: flex;
+  }
 }
 </style>

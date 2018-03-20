@@ -140,6 +140,9 @@ a:hover {
 }
 
 @media screen and (max-width: 430px) {
+  .title {
+    margin-bottom: 10px;
+  }
   .content {
     width: 350px;
     height: 550px;

@@ -53,4 +53,10 @@
   .logo:hover {
     fill: #fff;
   }
+
+  @media screen and (max-width: 430px) {
+    .social {
+      margin-bottom: 0;
+    }
+  }
 </style>

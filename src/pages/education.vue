@@ -56,4 +56,9 @@ p {
   margin: 5px;
   font-size: 1.5rem;
 }
+@media screen and (max-width: 430px) {
+  .title {
+    margin-bottom: 10px;
+  }
+}
 </style>
