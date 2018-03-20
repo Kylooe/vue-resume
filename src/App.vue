@@ -72,22 +72,23 @@ export default {
         else this.current++
       }
       this.lock = true
-      setTimeout(() => { this.lock = false }, 1000)
+      setTimeout(() => { this.lock = false }, 800)
     },
     touchmove (e) {
       this.touchY = e.changedTouches[0].screenY
     },
     touchend (e) {
       if (this.touchY === 0 || this.lock) return
-      if (this.touchY - e.changedTouches[0].screenY > 50) {
-        if (this.current === 0) return
-        else this.current--
-      } else if (this.touchY - e.changedTouches[0].screenY < -50) {
+      const endY = e.changedTouches[0].screenY
+      if (this.touchY - endY > 50) {
         if (this.current === this.pages.length - 1) return
         else this.current++
+      } else if (this.touchY - endY < -50) {
+        if (this.current === 0) return
+        else this.current--
       }
       this.lock = true
-      setTimeout(() => { this.lock = false }, 1000)
+      setTimeout(() => { this.lock = false }, 800)
     }
   },
   components: { switcher, navigator, profile, skill, project, education, pdf }

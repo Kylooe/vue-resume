@@ -7,8 +7,8 @@ export default {
   skill: [
     { name: 'HTML5', level: 9 },
     { name: 'CSS3', level: 9 },
-    { name: 'JavaScript', level: 7 },
-    { name: 'React', level: 4 },
+    { name: 'JavaScript', level: 8 },
+    { name: 'React', level: 5 },
     { name: 'Vue', level: 5 }
   ],
   projects: [
@@ -17,14 +17,14 @@ export default {
       name: '澳门房屋局新官方网站',
       show: true,
       keywords: [ 'Brunch', 'sass', 'ES 6' ],
-      description: '澳门特别行政区政府房屋局新官方网站。'
+      description: '澳门特别行政区政府房屋局新官方网站。个人负责前台除首页外的所有页面重构、UI 动效、基于 Vue 开发后台系统的部分组件等等。'
     },
     {
       img: './static/img/gcs.png',
       name: '澳门新闻局照片征集平台',
       show: true,
       keywords: [ 'sass', 'ES 6', 'gulp' ],
-      description: '澳門特別行政區政府新聞局面向公众的照片征集平台。\n生成 twig，除内容型图片外所有视觉效果使用 CSS 完成。实现用户登录上传图片相关的前端逻辑。',
+      description: '澳門特別行政區政府新聞局面向公众的照片征集平台。\n生成 twig，除内容型图片外所有视觉效果使用 CSS 完成，自动化构建使用 gulp。',
       demo: 'https://photo.gcs.gov.mo/'
     },
     {
@@ -32,7 +32,7 @@ export default {
       name: 'Macao Marathon 2017',
       show: true,
       keywords: [ 'Bootstrap', 'sass', 'Symfony 2.8', 'jQuery' ],
-      description: '2017 年澳门银河娱乐国际马拉松的官方网站，主要负责全站前台的所有页面前端相关实现，包括设计稿重构、交互逻辑实现、移动端兼容等等，以及调试官方App中的活动相关页面Web View。',
+      description: '在历年的冗余老代码基础上基于 Bootstrap 和 jQuery 进⾏新⼀年项⽬的开发，按照设计稿重构 PC 端和移动端布局样式。整理项⽬文件结构，编写项⽬文档。独立负责上述前端相关部分，以及同项⽬ App 中活动⻚的 WebView 调整。',
       demo: 'http://www.macaomarathon.com/zh/'
     },
     {
